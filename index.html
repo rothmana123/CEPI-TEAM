@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CEPI Meet the Team Mock-Up</title>
+    <style>
+      :root {
+        --sfbu-blue: #003e69;
+        --sfbu-navy: #002045;
+        --sfbu-sky: #5faaf2;
+        --sfbu-gold: #bc955b;
+        --sfbu-ink: #231f20;
+        --sfbu-slate: #616c75;
+        --sfbu-border: #b2c2d0;
+        --sfbu-white: #ffffff;
+        --shadow-soft: 0 24px 60px rgba(0, 32, 69, 0.12);
+        --shadow-card: 0 18px 36px rgba(0, 32, 69, 0.1);
+        --radius-xl: 32px;
+        --radius-lg: 24px;
+        --radius-md: 18px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Roboto Condensed", "Arial Narrow", Arial, sans-serif;
+        color: var(--sfbu-ink);
+        background:
+          radial-gradient(circle at top left, rgba(95, 170, 242, 0.18), transparent 32%),
+          linear-gradient(180deg, #eef4f8 0%, #f9fbfc 38%, #ffffff 100%);
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .team-section {
+        padding: 72px 20px 88px;
+      }
+
+      .team-shell {
+        max-width: 1220px;
+        margin: 0 auto;
+        background: var(--sfbu-white);
+        border: 1px solid rgba(178, 194, 208, 0.5);
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .team-hero {
+        position: relative;
+        padding: 56px 56px 44px;
+        background:
+          linear-gradient(135deg, rgba(0, 32, 69, 0.95), rgba(0, 62, 105, 0.92)),
+          linear-gradient(90deg, var(--sfbu-blue), var(--sfbu-navy));
+        color: var(--sfbu-white);
+      }
+
+      .team-hero::after {
+        content: "";
+        position: absolute;
+        inset: auto 32px -52px auto;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(188, 149, 91, 0.35), rgba(188, 149, 91, 0));
+        pointer-events: none;
+      }
+
+      .eyebrow {
+        margin: 0 0 12px;
+        font-size: 0.95rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+        gap: 32px;
+        align-items: end;
+      }
+
+      .hero-copy h1 {
+        margin: 0;
+        max-width: 12ch;
+        font-size: clamp(2.7rem, 5vw, 4.8rem);
+        line-height: 0.95;
+        text-transform: uppercase;
+      }
+
+      .hero-copy p {
+        margin: 20px 0 0;
+        max-width: 42rem;
+        font-size: 1.18rem;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.88);
+      }
+
+      .hero-note {
+        align-self: stretch;
+        padding: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: var(--radius-lg);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
+        backdrop-filter: blur(10px);
+      }
+
+      .hero-note strong {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 1.08rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .hero-note p {
+        margin: 0;
+        line-height: 1.55;
+        color: rgba(255, 255, 255, 0.88);
+      }
+
+      .team-content {
+        padding: 88px 32px 40px;
+      }
+
+      .featured-card {
+        display: grid;
+        grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+        gap: 28px;
+        align-items: stretch;
+        padding: 28px;
+        margin-bottom: 28px;
+        border-radius: var(--radius-lg);
+        background: linear-gradient(180deg, #f9fbfc 0%, #f2f6f9 100%);
+        border: 1px solid rgba(178, 194, 208, 0.55);
+      }
+
+      .featured-media {
+        position: relative;
+        min-height: 100%;
+        border-radius: calc(var(--radius-lg) - 6px);
+        overflow: hidden;
+        background: linear-gradient(180deg, rgba(0, 62, 105, 0.12), rgba(95, 170, 242, 0.12));
+      }
+
+      .featured-media img {
+        width: 100%;
+        height: 100%;
+        min-height: 380px;
+        object-fit: cover;
+      }
+
+      .featured-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .role-tag {
+        width: fit-content;
+        margin-bottom: 14px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(188, 149, 91, 0.14);
+        color: var(--sfbu-blue);
+        font-size: 0.92rem;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+      }
+
+      .featured-body h2 {
+        margin: 0;
+        font-size: clamp(2rem, 3vw, 3rem);
+        line-height: 0.95;
+        text-transform: uppercase;
+        color: var(--sfbu-navy);
+      }
+
+      .featured-body h3 {
+        margin: 10px 0 18px;
+        font-size: 1.15rem;
+        line-height: 1.35;
+        color: var(--sfbu-slate);
+      }
+
+      .featured-body p {
+        margin: 0 0 14px;
+        font-size: 1rem;
+        line-height: 1.65;
+      }
+
+      .contact-link {
+        display: inline-flex;
+        width: fit-content;
+        margin-top: 8px;
+        padding: 12px 18px;
+        border-radius: 999px;
+        background: var(--sfbu-blue);
+        color: var(--sfbu-white);
+        text-decoration: none;
+        font-size: 0.95rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .contact-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 8px;
+      }
+
+      .contact-link.secondary {
+        background: transparent;
+        color: var(--sfbu-blue);
+        border: 1px solid rgba(0, 62, 105, 0.22);
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .team-card {
+        display: grid;
+        grid-template-columns: 152px minmax(0, 1fr);
+        gap: 18px;
+        padding: 20px;
+        min-height: 100%;
+        border-radius: var(--radius-md);
+        background: var(--sfbu-white);
+        border: 1px solid rgba(178, 194, 208, 0.6);
+        box-shadow: var(--shadow-card);
+      }
+
+      .team-card img {
+        width: 152px;
+        height: 186px;
+        border-radius: 16px;
+        object-fit: cover;
+      }
+
+      .team-card h4 {
+        margin: 0;
+        font-size: 1.6rem;
+        line-height: 1;
+        text-transform: uppercase;
+        color: var(--sfbu-navy);
+      }
+
+      .team-card .card-role {
+        margin: 8px 0 12px;
+        color: var(--sfbu-gold);
+        font-size: 0.95rem;
+        line-height: 1.35;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .team-card p {
+        margin: 0 0 14px;
+        color: var(--sfbu-ink);
+        line-height: 1.58;
+      }
+
+      .team-card .card-contact {
+        display: inline-block;
+        color: var(--sfbu-blue);
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 700;
+      }
+
+      .section-footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        align-items: center;
+        margin-top: 28px;
+        padding: 18px 4px 0;
+        border-top: 1px solid rgba(178, 194, 208, 0.6);
+        color: var(--sfbu-slate);
+      }
+
+      .section-footer p {
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      .accent-line {
+        width: 110px;
+        height: 6px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--sfbu-gold), var(--sfbu-sky));
+        flex: 0 0 auto;
+      }
+
+      @media (max-width: 980px) {
+        .team-hero {
+          padding: 42px 28px 38px;
+        }
+
+        .team-content {
+          padding: 72px 20px 28px;
+        }
+
+        .hero-grid,
+        .featured-card,
+        .cards-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .featured-media img {
+          min-height: 320px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .team-section {
+          padding: 28px 12px 44px;
+        }
+
+        .team-shell {
+          border-radius: 24px;
+        }
+
+        .featured-card,
+        .team-card {
+          padding: 16px;
+        }
+
+        .team-card {
+          grid-template-columns: 1fr;
+        }
+
+        .team-card img {
+          width: 100%;
+          height: 260px;
+        }
+
+        .section-footer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="team-section">
+      <div class="team-shell">
+        <div class="team-hero">
+          <p class="eyebrow">Center for Empowerment and Pedagogical Innovation</p>
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <h1>Meet the CEPI Team</h1>
+              <p>
+                The people behind CEPI blend pedagogy, design, student support, and discipline-specific
+                coaching to help faculty and students thrive across the SFBU learning experience.
+              </p>
+            </div>
+            <aside class="hero-note">
+              <strong>Built to Match SFBU</strong>
+              <p>
+                This concept follows the university site’s deep blue, gold, and mist palette with bold,
+                condensed typography and a clean editorial card layout.
+              </p>
+            </aside>
+          </div>
+        </div>
+
+        <div class="team-content">
+          <article class="featured-card">
+            <div class="featured-media">
+              <img src="./CEPI Team Images/Anzar Khaliq.png" alt="Portrait of Anzar Khaliq" />
+            </div>
+            <div class="featured-body">
+              <div class="role-tag">Leadership</div>
+              <h2>Anzar Khaliq</h2>
+              <h3>Chief Learning Officer</h3>
+              <p>
+                Anzar Khaliq, Ph.D., is SFBU’s first chief learning officer and leader of the Center for
+                Empowerment and Pedagogical Innovation (CEPI). Prior to joining SFBU, he was a founding
+                member of Habib University in Karachi, Pakistan. Khaliq held several key leadership roles,
+                including associate dean of teaching and learning, as well as assistant dean of the Dhanani
+                School of Science and Engineering. He also co-founded the Center of Transdisciplinarity,
+                Design, and Innovation at Habib University.
+              </p>
+              <p>
+                Khaliq brings a unique blend of creativity and innovation to his work, shaped by his 10
+                years as a radio jockey and his training in improv theater. These experiences profoundly
+                inform his teaching approach, particularly in courses he led like life design and the
+                history and philosophy of science, where he encouraged students to explore new perspectives.
+              </p>
+              <p>
+                Khaliq is also an experimental physicist and a design researcher. Trained as a
+                nano-scientist at Sorbonne University in Paris, he has worked at some of the world’s most
+                cutting-edge particle accelerators, bringing a deep scientific rigor to his diverse roles
+                in academia.
+              </p>
+              <div class="contact-row">
+                <a class="contact-link" href="mailto:anzar.khaliq@sfbu.edu">Contact Anzar</a>
+                <a
+                  class="contact-link secondary"
+                  href="https://anzarkhaliq.com"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Visit Website
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <div class="cards-grid">
+            <article class="team-card">
+              <img src="./CEPI Team Images/Leslie Ji.png" alt="Portrait of Leslie Ji" />
+              <div>
+                <h4>Leslie Ji</h4>
+                <p class="card-role">Student Support Specialist in Academic Writing and Language Proficiency</p>
+                <p>
+                  Leslie is passionate about empowering students to find their voice through the vehicle of
+                  language, instilling a spirit of confidence with effective communication skills that help
+                  them excel academically and in their future careers. Her six-year background in public
+                  education and targeted tutoring services enables her to design personalized learning
+                  approaches that build student proficiency. Leslie holds B.A. degrees in theatre and dance
+                  from UC San Diego and a single subject teaching credential from San Jose State.
+                </p>
+                <a class="card-contact" href="mailto:leslie.ji@sfbu.edu">leslie.ji@sfbu.edu</a>
+              </div>
+            </article>
+
+            <article class="team-card">
+              <img src="./CEPI Team Images/Evelyn Binoya.png" alt="Portrait of Evelyn Binoya" />
+              <div>
+                <h4>Evelyn Binoya</h4>
+                <p class="card-role">Student Support Specialist in Mathematics and Quantitative Reasoning</p>
+                <p>
+                  Evelyn earned her B.S. in mathematics and B.A. in art history from Stanford University,
+                  where she conducted research alongside the archaeology and material science departments,
+                  regularly leveraging data science techniques. She has previously worked at various museums
+                  and collections, including the DeYoung Museum and the Smithsonian Institution, where she
+                  conducted scientific analyses of various artifacts. With six years of mathematics tutoring
+                  experience and a deep passion for teaching and learning, Evelyn is committed to helping
+                  students achieve their academic goals while sharing her enthusiasm for mathematics.
+                </p>
+                <a class="card-contact" href="mailto:evelyn.binoya@sfbu.edu">evelyn.binoya@sfbu.edu</a>
+              </div>
+            </article>
+
+            <article class="team-card">
+              <img src="./CEPI Team Images/MariaZapiain.png" alt="Portrait of Maria Zapiain" />
+              <div>
+                <h4>Maria Zapiain</h4>
+                <p class="card-role">Instructional Designer</p>
+                <p>
+                  Maria Zapiain earned her Master’s in Education and Tutoring and Bachelor’s degree in Art
+                  Education in Mexico, along with a MicroMaster’s Certificate in Instructional Design and
+                  Technology from the University of Maryland. With experience spanning K–12 teaching,
+                  instructional design, curriculum development, eLearning, and faculty and staff training,
+                  she is passionate about creating engaging and meaningful learning experiences that make
+                  education accessible to diverse learners.
+                </p>
+                <p>
+                  Maria combines creativity, technology, and innovative teaching strategies to support
+                  student and faculty success. Her background in both education and the arts allows her to
+                  approach learning design with empathy, adaptability, and a strong focus on learner
+                  engagement and detail.
+                </p>
+                <a class="card-contact" href="mailto:maria.zapiain@sfbu.edu">maria.zapiain@sfbu.edu</a>
+              </div>
+            </article>
+
+            <article class="team-card">
+              <img src="./CEPI Team Images/AndrewRothman-Headshot.png" alt="Portrait of Andrew Rothman" />
+              <div>
+                <h4>Andrew Rothman</h4>
+                <p class="card-role">Instructional Designer</p>
+                <p>
+                  Andrew is passionate about helping students build confidence, technical fluency, and
+                  real-world problem-solving skills through thoughtful curriculum design and supportive
+                  instruction. His background in public education, computer science, and instructional
+                  design enables him to create engaging learning experiences that make complex concepts more
+                  accessible to students. Andrew has developed curriculum, facilitated teacher training, and
+                  supported the implementation of STEM and AI-enhanced learning programs across K–12 and
+                  higher education settings. He holds a B.A. in Political Science from San Francisco State
+                  University and an M.A. in International Affairs from Columbia University, and is
+                  committed to helping students connect academic learning to practical skills, creative
+                  inquiry, and future career opportunities.
+                </p>
+                <a class="card-contact" href="mailto:andrew.rothman@sfbu.edu">andrew.rothman@sfbu.edu</a>
+              </div>
+            </article>
+          </div>
+
+          <div class="section-footer">
+            <p>
+              Design note: this layout uses a featured leadership profile plus supporting team cards, which
+              mirrors the editorial feel of the SFBU site while keeping bios scannable.
+            </p>
+            <div class="accent-line" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
